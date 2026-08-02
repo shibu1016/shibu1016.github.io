@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     display();
 });
 
-
 function display() {
   let table = document.createElement("table");
   table.className = `display`;
@@ -33,12 +32,14 @@ function display() {
       let firstday_2 = date.getDate();
       if(j<firstweek){
         td.textContent = `${firstday_1+j}`;
+        td.id = `${year}/${month-1}/${firstday_1+j}`;
         td.className = `notMonth`;
       }else{
         td.textContent = `${firstday_2+j-firstweek}`;
+        td.id = `${year}/${month}/${firstday_2+j-firstweek}`;
       }
       tr.appendChild(td);
-      td.id = `day1_${j}`;
+
     }
     table.appendChild(tr);
   let value = 8 - firstweek;
@@ -51,18 +52,47 @@ function display() {
         if(value > date_end.getDate()){
           td.textContent = `${k}`;
           td.className = `notMonth`;
+          td.id = `${year}/${month+1}/${k}`;
           k++;
         }else{
           td.textContent = `${value}`;
+          td.id = `${year}/${month}/${value}`;
           value++;
         }
         tr.appendChild(td);
-        td.id = `day${m}_${l}`;
       }
       table.appendChild(tr);
       m++;
   }
   document.getElementById("display").appendChild(table);
+  loadHoliday();
+}
+
+function loadHoliday() {
+  fetch("json/holidays.json")
+  .then(response => response.json())
+  .then(data => {
+    for(i=1;i<32;i++){
+      let targetDate = year+"/"+month+"/"+i;
+      let isholiday = data.find(item => item.date === targetDate);
+      let td = document.getElementById(targetDate);
+      let day = td.textContent;
+      td.innerHTML = `
+        <a href="detail.html?date=${targetDate}" class="cell-link">${i}</a>
+      `;
+      if (isholiday) {
+        document.getElementById(targetDate).className = `holiday`;
+        td.innerHTML = `
+        <a href="detail.html?date=${targetDate}" class="cell-link">
+          <div id="part1_${i}"></div>
+          <div class="holidayName" id="part2_${i}"></div>
+        </a>
+        `;
+        document.getElementById("part1_"+i).textContent = day;
+        document.getElementById("part2_"+i).textContent = isholiday.name;
+      }
+    }
+  });
 }
 
 function previous() {
