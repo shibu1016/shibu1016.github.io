@@ -1,7 +1,7 @@
 let now = new Date();
 let year = now.getFullYear();   // 年
 let month = now.getMonth() + 1; // 月（0～11なので+1）
-
+const today = year+"/"+month+"/"+now.getDate();
 let weekname = ["日","月","火","水","木","金","土"];
 
 
@@ -81,7 +81,11 @@ function loadHoliday() {
         <a href="detail.html?date=${targetDate}" class="cell-link">${i}</a>
       `;
       if (isholiday) {
-        document.getElementById(targetDate).className = `holiday`;
+        if(targetDate == today){
+          document.getElementById(targetDate).className = `today`;
+        }else{
+          document.getElementById(targetDate).className = `holiday`;          
+        }
         td.innerHTML = `
         <a href="detail.html?date=${targetDate}" class="cell-link">
           <div id="part1_${i}"></div>
@@ -91,6 +95,10 @@ function loadHoliday() {
         document.getElementById("part1_"+i).textContent = day;
         document.getElementById("part2_"+i).textContent = isholiday.name;
       }
+      else if(targetDate == today){
+        document.getElementById(targetDate).className = `today`;
+      }
+
     }
   });
 }
@@ -116,6 +124,16 @@ function next() {
   }else{
    month = month + 1;
   }
+  //alert(year+"年"+month+"月");
+　document.getElementById("year").textContent = year;
+　document.getElementById("month").textContent = month;
+  document.getElementById("display").innerHTML = "";
+  display();
+}
+
+function now_month() {
+   year = now.getFullYear();
+   month = now.getMonth() + 1;
   //alert(year+"年"+month+"月");
 　document.getElementById("year").textContent = year;
 　document.getElementById("month").textContent = month;
