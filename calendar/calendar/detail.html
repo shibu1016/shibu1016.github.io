@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スケジュール管理</title>
+<link rel="stylesheet" href="css/style2.css">
+</head>
+
+<script src="js/app.js"></script>
+
+<body>
+
+<h1>スケジュール管理</h1>
+
+<div class="form">
+
+<label>日付</label>
+<div id="date">a</div>
+
+<br>
+<label>開始時間</label>
+<input type="time" id="start">
+
+<label>終了時間</label>
+<input type="time" id="end">
+
+<label>分類</label>
+<input type="text" id="category">
+
+<label>内容</label>
+<input type="text" id="title">
+
+<label>備考</label>
+<textarea id="memo"></textarea>
+
+<button onclick="addSchedule()">登録</button>
+
+<button onclick="downloadCSV()">CSV出力</button>
+
+<button onclick="history.back()">戻る</button>
+
+</div>
+
+
+<h2>予定一覧</h2>
+
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>内容</th>
+</tr>
+</thead>
+
+<tbody id="list">
+</tbody>
+
+</table>
+
+</body>
+</html>
