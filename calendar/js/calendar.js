@@ -65,6 +65,29 @@ function display() {
       m++;
   }
   document.getElementById("display").appendChild(table);
+
+fetch("../json/images.json")
+  .then(response => response.json())
+  .then(images => {
+
+    // 配列をシャッフル（Fisher-Yates）
+    for (let a = images.length - 1; a > 0; a--) {
+      const b = Math.floor(Math.random() * (a + 1));
+      [images[a], images[b]] = [images[b], images[a]];
+    }
+
+const photos = document.querySelectorAll(".notMonth");
+
+photos.forEach((photo, index) => {
+  if (index < images.length) {
+    photo.style.backgroundImage = `url("${images[index]}")`;
+  }
+});
+
+  })
+  .catch(error => console.error(error));
+
+
   loadHoliday();
 }
 

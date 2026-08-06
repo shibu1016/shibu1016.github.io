@@ -1,9 +1,4 @@
 body {
-  background-image: url("../img/chacha_1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
   font-family: sans-serif;
   text-align: center;
 }
@@ -23,6 +18,8 @@ td {
   vertical-align: top;
   width: 60px;
   height: 80px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px white;
 }
 
 th {
@@ -36,8 +33,9 @@ th {
 }
 
 .notMonth {
-  background-color: lightgray;
-  color:#807e7e
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .today {
@@ -46,12 +44,13 @@ th {
 
 .holiday{
   background-color: rgb(254, 211, 255);
-  color:#807e80
+  color:black
 }
 
 .holidayName {
   font-size: 10px;
   color: red;
+  font-weight: bold;
   background-color: rgb(168, 215, 253);
   text-align: center;
   border-radius: 15px;       /* 角の丸み */
