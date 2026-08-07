@@ -66,7 +66,7 @@ function display() {
   }
   document.getElementById("display").appendChild(table);
 
-fetch("../json/images.json")
+fetch("json/images.json")
   .then(response => response.json())
   .then(images => {
 
