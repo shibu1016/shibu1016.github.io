@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedValue !== null) {
         document.getElementById("title").value = savedValue;
     }
+    const Value2 = localStorage.getItem("memo");
+    document.getElementById("memo").value = Value2;
     document.getElementById("date").textContent=date;
 });
 
@@ -72,6 +74,12 @@ function downloadCSV(){
 function saveData() {
     const value = document.getElementById("title").value;
     localStorage.setItem(titles, value);
+    const value2 = document.getElementById("memo").value;
+    localStorage.setItem("memo", value2);
     alert("保存しました");
 
+}
+
+function backpage() {
+    location.href = "index.html";
 }
